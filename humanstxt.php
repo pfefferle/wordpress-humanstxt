@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: humans.txt
-Plugin URI: http://spreadly.com
+Plugin URI: http://notizblog.org/
 Description: humans.txt for WordPress
 Version: 0.1
 Author: pfefferle
