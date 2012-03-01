@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: humans.txt
-Plugin URI: http://notizblog.org/
+Plugin URI: https://github.com/pfefferle/humanstxt
 Description: humans.txt for WordPress
-Version: 0.1
+Version: 0.2
 Author: pfefferle
 Author URI: http://notizblog.org/
 */
@@ -54,11 +54,11 @@ add_filter('query_vars', 'humanstxt_query_vars');
  * @param object $wp_rewrite WP_Rewrite object
  */
 function humanstxt_rewrite_rules($wp_rewrite) {
-  $wellKnownRules = array(
-  	'humans.txt' => 'index.php?humanstxt'
+  $rewrite_rules = array(
+  	'humans.txt' => 'index.php?humanstxt=true'
 	);
 
-	$wp_rewrite->rules = $wellKnownRules + $wp_rewrite->rules;
+	$wp_rewrite->rules = $rewrite_rules + $wp_rewrite->rules;
 }
 add_action('generate_rewrite_rules', 'humanstxt_rewrite_rules');
 
@@ -68,7 +68,8 @@ add_action('generate_rewrite_rules', 'humanstxt_rewrite_rules');
  * @param object $wp WP instance for the current request
  */
 function humanstxt_parse_request($wp) {
-	if(isset($_GET['humanstxt'])) {
+  global $wp;
+	if(array_key_exists('humanstxt', $wp->query_vars)) {
 		humanstxt_write();
 	}
 }
@@ -106,3 +107,13 @@ function humanstxt_default_team_data($data, $user) {
   return $data;
 }
 add_filter('humanstxt_team_data', 'humanstxt_default_team_data', 1, 2);
+
+/**
+ * reset rewrite rules
+ */
+function humanstxt_flush_rewrite_rules() {
+  global $wp_rewrite;
+  $wp_rewrite->flush_rules();
+}
+register_activation_hook(__FILE__, 'humanstxt_flush_rewrite_rules');
+register_deactivation_hook(__FILE__, 'humanstxt_flush_rewrite_rules');
