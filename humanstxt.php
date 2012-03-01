@@ -3,7 +3,7 @@
 Plugin Name: humans.txt
 Plugin URI: https://github.com/pfefferle/humanstxt
 Description: humans.txt for WordPress
-Version: 0.2
+Version: 1337
 Author: pfefferle
 Author URI: http://notizblog.org/
 */
