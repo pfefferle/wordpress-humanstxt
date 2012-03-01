@@ -55,10 +55,10 @@ add_filter('query_vars', 'humanstxt_query_vars');
  */
 function humanstxt_rewrite_rules($wp_rewrite) {
   $rewrite_rules = array(
-  	'humans.txt' => 'index.php?humanstxt=true'
-	);
+    'humans.txt' => 'index.php?humanstxt=true'
+  );
 
-	$wp_rewrite->rules = $rewrite_rules + $wp_rewrite->rules;
+  $wp_rewrite->rules = $rewrite_rules + $wp_rewrite->rules;
 }
 add_action('generate_rewrite_rules', 'humanstxt_rewrite_rules');
 
@@ -69,9 +69,9 @@ add_action('generate_rewrite_rules', 'humanstxt_rewrite_rules');
  */
 function humanstxt_parse_request($wp) {
   global $wp;
-	if(array_key_exists('humanstxt', $wp->query_vars)) {
-		humanstxt_write();
-	}
+  if(array_key_exists('humanstxt', $wp->query_vars)) {
+    humanstxt_write();
+  }
 }
 add_action('parse_request', 'humanstxt_parse_request');
 
