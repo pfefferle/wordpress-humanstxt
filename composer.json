@@ -14,6 +14,6 @@
     "composer/installers": "~1.0"
   },
   "extra": {
-    "installer-name": "humanstxt"
+    "installer-name": "simple-humanstxt"
   }
 }
